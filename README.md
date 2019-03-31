@@ -11,6 +11,18 @@ sudo apt install python3-pip
 pip3 install --user --upgrade pynvim autopep8 pylint yapf jedi
 ```
 
+### ctags - for tagbar
+
+```
+sudo apt-get install autoconf
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags
+./autogen.sh 
+./configure
+make
+sudo make install
+```
+
 ### Configure Neovim
 
 ```
