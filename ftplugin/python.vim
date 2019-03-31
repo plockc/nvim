@@ -1,1 +1,1 @@
-let b:ale_fixers = {'python': ['autopep8']}
+let b:ale_fixers = {'python': ['isort', 'autopep8', 'yapf']}

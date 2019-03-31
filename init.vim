@@ -157,6 +157,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/deoplete.nvim')
     " python plugin for deoplete
     call dein#add('deoplete-plugins/deoplete-jedi')
+    " ocaml plugin for deoplete
+    call dein#add('copy/deoplete-ocaml')
     call dein#add('fatih/vim-go')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
@@ -165,16 +167,12 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('scrooloose/nerdtree')
     call dein#add('iCyMind/NeoSolarized')
-    " basic python syntax checking
-    " call dein#add('vim-syntastic/syntastic')
-    " python support still WIP
-    " call dein#add('prettier/vim-prettier')
-    
-    " linter and fixer
-    " pip3 install --user autopep8 pylint yapf
+
+    " ale is code linter and fixer
+    " for python support: pip3 install --user autopep8 pylint yapf
     call dein#add('w0rp/ale')
+    " do all completions just with tab
     call dein#add('ervandew/supertab')
-    call dein#add('sbdchd/neoformat')
 
     " You can specify revision/branch/tag.
     "call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
@@ -221,12 +219,6 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 let g:python3_host_prog = 'python3'
 
-let g:neoformat_basic_format_retab = 1
-let g:neoformat_basic_format_trim = 1
-let g:neoformat_enabled_python = ['yapf']
-let g:neoformat_run_all_formatters = 1
-" let g:neoformat_verbose = 1
-
 "python with virtualenv support
 py3 << EOF
 import os
@@ -236,11 +228,3 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
 EOF
-
-
-
-" augroup fmt
-"     autocmd!
-"     autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-" augroup END
-
