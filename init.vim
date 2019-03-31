@@ -155,6 +155,8 @@ if dein#load_state('~/.cache/dein')
     
     " For autocomplete
     call dein#add('Shougo/deoplete.nvim')
+    " python plugin for deoplete
+    call dein#add('deoplete-plugins/deoplete-jedi')
     call dein#add('fatih/vim-go')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
