@@ -8,7 +8,7 @@ Looks for python3 in path
 
 ```
 sudo apt install python3-pip
-pip3 install --user --upgrade pynvim autopep8 pylint yapf
+pip3 install --user --upgrade pynvim autopep8 pylint yapf jedi
 ```
 
 ### Configure Neovim
