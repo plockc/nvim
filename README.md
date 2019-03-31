@@ -13,7 +13,7 @@ pip3 install --user --upgrade pynvim autopep8 pylint yapf jedi
 
 ### Configure Neovim
 
-````
+```
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
 sh /tmp/installer.sh ~/.cache/dein
 cd ~/.config
