@@ -11,6 +11,12 @@ sudo apt install python3-pip
 pip3 install --user --upgrade pynvim autopep8 pylint yapf jedi isort
 ```
 
+### golang
+
+```
+go get -u github.com/stamblerre/gocode
+```
+
 ### ctags - for tagbar
 
 ```
