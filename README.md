@@ -20,6 +20,10 @@ go get -u github.com/stamblerre/gocode
 ### ctags - for tagbar
 
 ```
+brew install ctags  # installs exuberant ctags
+```
+
+```
 sudo apt-get install autoconf
 git clone https://github.com/universal-ctags/ctags.git
 cd ctags
