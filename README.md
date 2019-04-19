@@ -42,3 +42,10 @@ cd ~/.config
 git clone git@github.com:plockc/nvim.git
 nvim  # it will auto-install plugins
 ```
+
+### Update Plugins
+
+Inside of nvim
+```
+:UpdateRemotePlugins
+```
