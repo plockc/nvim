@@ -162,7 +162,7 @@ if dein#load_state('~/.cache/dein')
     " golang plugin for deoplete
     call dein#add('deoplete-plugins/deoplete-go', {'build': 'make'})
 
-    call dein#add('fatih/vim-go')
+    call dein#add('fatih/vim-go', { 'rev': 'v1.20'})
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('majutsushi/tagbar')
@@ -189,6 +189,8 @@ endif
 if dein#check_install()
     call dein#install()
 endif
+
+call deoplete#custom#option('deoplete-source-attribute-min_pattern_length', 0)
 
 "End dein Scripts-------------------------
 "
@@ -231,3 +233,22 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
 EOF
+
+
+" go-vim
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_extra_types = 1
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
