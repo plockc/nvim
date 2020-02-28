@@ -177,6 +177,9 @@ if dein#load_state('~/.cache/dein')
     " do all completions just with tab
     call dein#add('ervandew/supertab')
 
+    " when yanking, have it auto format the pasted block
+    call dein#add('sickill/vim-pasta')
+
     " You can specify revision/branch/tag.
     "call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
 
