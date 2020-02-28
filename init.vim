@@ -209,6 +209,8 @@ let g:deoplete#enable_at_startup = 1
 let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 
+let g:ale_linters = {'go': ['gopls'],}
+
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 highlight BadWhitespace ctermbg=red guibg=red
