@@ -160,7 +160,6 @@ if dein#load_state('~/.cache/dein')
     " ocaml plugin for deoplete
     call dein#add('copy/deoplete-ocaml')
     " golang plugin for deoplete
-    call dein#add('deoplete-plugins/deoplete-go', {'build': 'make'})
 
     call dein#add('fatih/vim-go', { 'rev': 'v1.20'})
     call dein#add('vim-airline/vim-airline')
