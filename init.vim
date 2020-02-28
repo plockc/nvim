@@ -125,16 +125,6 @@ hi MBEVisibleActiveChanged ctermbg=yellow ctermfg=black cterm=bold
 
 au BufNewFile,BufRead *.ad setlocal ft=asciidoc
 
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_balloons = 1
-
-let g:syntastic_go_checkers = ['gometalinter']
-let g:syntastic_go_gometalinter_args = "--fast --disable=errcheck"
-
 let g:indent_guides_enable_on_vim_startup = 1
 
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
