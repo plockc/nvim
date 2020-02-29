@@ -151,7 +151,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('copy/deoplete-ocaml')
     " golang plugin for deoplete
 
-    call dein#add('fatih/vim-go', { 'rev': 'v1.20'})
+    call dein#add('fatih/vim-go', { 'rev': 'v1.22'})
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('majutsushi/tagbar')
