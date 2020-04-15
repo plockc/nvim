@@ -253,3 +253,7 @@ let g:go_auto_sameids = 1
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
+" instead of filling the default register (clipboard), send to black hole register
+" use x to cut
+nnoremap d "_d
+vnoremap d "_d
