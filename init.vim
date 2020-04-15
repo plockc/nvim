@@ -151,7 +151,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('copy/deoplete-ocaml')
     " golang plugin for deoplete
 
-    call dein#add('fatih/vim-go', { 'rev': 'v1.22'})
+    call dein#add('fatih/vim-go')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('majutsushi/tagbar')
@@ -246,7 +246,7 @@ let g:go_highlight_extra_types = 1
 " show docs for type with "K" for example
 
 " automiatically show type in the little window on the bottom
-let g:go_auto_type_info = 0
+let g:go_auto_type_info = 1
 " doesn't seem to work in neovim . . .
 let g:go_doc_popup_window = 0
 " highlights usage of identifier under cursor
