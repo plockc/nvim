@@ -14,15 +14,18 @@ pip3 install --user --upgrade pynvim autopep8 pylint yapf jedi isort
 ### golang
 
 ```
-go get -u github.com/stamblerre/gocode
+go install golang.org/x/tools/cmd/goimports@latest
+go install golang.org/x/tools/gopls@latest
 ```
 
 ### ctags - for tagbar
 
+OS-X
 ```
-brew install ctags  # installs exuberant ctags
+brew install universal-ctags  # installs exuberant ctags
 ```
 
+Linux
 ```
 sudo apt-get install autoconf
 git clone https://github.com/universal-ctags/ctags.git
@@ -45,7 +48,18 @@ nvim  # it will auto-install plugins
 
 ### Update Plugins
 
-Inside of nvim
+Inside of nvim, to update neovim plugins
 ```
 :UpdateRemotePlugins
+```
+
+And for dein managed plugins:
+```
+call dein#update()
+```
+
+
+For golang
+```
+:GoBinaryInstall
 ```

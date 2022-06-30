@@ -154,7 +154,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('fatih/vim-go')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
-    call dein#add('majutsushi/tagbar')
+    call dein#add('preservim/tagbar')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('scrooloose/nerdtree')
@@ -242,6 +242,7 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_trailing_whitespace_error = 1
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_extra_types = 1
+let g:go_fmt_command = "goimports"
 
 " show docs for type with "K" for example
 
