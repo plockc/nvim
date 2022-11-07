@@ -69,14 +69,19 @@ com! DiffSaved call s:DiffWithSaved()
 " --------------------
 " map F8 to open/close the tagbar
 nmap <F8> :TagbarToggle<CR>
+" one mouse click navigates
 let g:tagbar_singleclick = 1
+let g:tagbar_expand = 1
+" do not make local copy of file
+let g:tagbar_use_cache = 0
+
 let g:ctrlp_max_files = 40000 " default only 10000 though this takes a while to process
 " open tabgar if file type supports it
 "autocmd VimEnter * nested :call tagbar#autoopen(1)
 " open tagbar on supported file types for new editors within vim
 "autocmd FileType * nested :call tagbar#autoopen(0)
 " open tagbar with new tab for supported file type, might be disabled because over aggressive? I forgot
-" :autocmd BufEnter * nested :call tagbar#autoopen(0)
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 set printoptions=paper:letter,duplex:off " Setup print options for hardcopy command.
 set showcmd " some extra info about the currnt command at the last line of screen
@@ -85,19 +90,17 @@ set showcmd " some extra info about the currnt command at the last line of scree
 " always show the powerline, and use unicode symbols
 set laststatus=2
 
-" tagbar configuration if you install it
-" ---------------------------------------
-" one mouse click navigates
-let g:tagbar_singleclick = 1
-
-
+" ----- golpls integration with go-vim -----
+"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " ----- NERDTREE ---------
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 silent! map <F2> :NERDTreeFind<CR>
 let g:NERDTreeMapActivateNode="<F2>"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.class$', '\~$']
 " need this off to use netrw which is the only way to get VCSCommand to work across directories
@@ -127,6 +130,32 @@ au BufNewFile,BufRead *.ad setlocal ft=asciidoc
 
 let g:indent_guides_enable_on_vim_startup = 1
 
+" go-vim
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_fmt_command = "goimports"
+
+" show docs for type with "K" for example
+
+" automiatically show type in the little window on the bottom
+" if non-zero automatically show type in the little window on the bottom
+" it prevents seeing errors though
+let g:go_auto_type_info = 0
+" doesn't seem to work in neovim . . .
+let g:go_doc_popup_window = 0
+" highlights usage of identifier under cursor
+let g:go_auto_sameids = 0
+
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
 "dein Scripts-----------------------------
@@ -151,14 +180,15 @@ if dein#load_state('~/.cache/dein')
     call dein#add('copy/deoplete-ocaml')
     " golang plugin for deoplete
 
-    call dein#add('fatih/vim-go')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('preservim/tagbar')
+    call dein#add('fatih/vim-go')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('scrooloose/nerdtree')
     call dein#add('iCyMind/NeoSolarized')
+    call dein#add('tpope/vim-fugitive')
 
     " ale is code linter and fixer
     " for python support: pip3 install --user autopep8 pylint yapf
@@ -182,7 +212,8 @@ if dein#check_install()
     call dein#install()
 endif
 
-call deoplete#custom#option('deoplete-source-attribute-min_pattern_length', 0)
+" what was this for?  errors now
+" call deoplete#custom#option('min_pattern_length', 0)
 
 "End dein Scripts-------------------------
 "
@@ -228,30 +259,12 @@ if 'VIRTUAL_ENV' in os.environ:
     exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
 EOF
 
+" can be found in path as well
+let g:tagbar_ctags_bin = "/usr/local/bin/ctags"
 
-" go-vim
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_highlight_variable_assignments = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_fmt_command = "goimports"
-
-" show docs for type with "K" for example
-
-" automiatically show type in the little window on the bottom
-let g:go_auto_type_info = 1
-" doesn't seem to work in neovim . . .
-let g:go_doc_popup_window = 0
-" highlights usage of identifier under cursor
-let g:go_auto_sameids = 1
+" vim-airline
+" drops the branch from the status line, as it blocks everything else
+let g:airline_section_b = airline#section#create_left(['hunks'])
 
 " instead of filling the default register (clipboard), send to black hole register
 " use x to cut
