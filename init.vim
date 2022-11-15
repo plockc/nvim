@@ -1,5 +1,6 @@
 " Comments lead with a double quote
 " turn on mouse for all modes
+set guifont=FiraCode\ Nerd\ Font\ Mono:8
 set mouse=a
 set clipboard=unnamed
 set hlsearch
