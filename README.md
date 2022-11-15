@@ -21,11 +21,21 @@ go install golang.org/x/tools/gopls@latest
 ### ctags - for tagbar
 
 OS-X
+<<<<<<< HEAD
 ```
 brew install universal-ctags  # installs universal ctags
 ```
 
 Linux
+=======
+
+```
+brew install universal-ctags 
+```
+
+Linux
+
+>>>>>>> 04f2335 (included changes from work laptop)
 ```
 sudo apt-get install autoconf
 git clone https://github.com/universal-ctags/ctags.git
@@ -48,7 +58,6 @@ nvim  # it will auto-install plugins
 
 ### Update Plugins
 
-Inside of nvim
 Inside of nvim, to update neovim plugins
 ```
 :UpdateRemotePlugins

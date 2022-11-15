@@ -1,5 +1,6 @@
 " Comments lead with a double quote
 " turn on mouse for all modes
+set guifont=FiraCode\ Nerd\ Font\ Mono:8
 set mouse=a
 set clipboard=unnamed
 set hlsearch
@@ -69,14 +70,25 @@ com! DiffSaved call s:DiffWithSaved()
 " --------------------
 " map F8 to open/close the tagbar
 nmap <F8> :TagbarToggle<CR>
+" one mouse click navigates
 let g:tagbar_singleclick = 1
-let g:ctrlp_max_files = 40000 " default only 10000 though this takes a while to process
+let g:tagbar_expand = 1
+" do not make local copy of file
+let g:tagbar_use_cache = 0
+
 " open tabgar if file type supports it
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+" autocmd VimEnter * nested :call tagbar#autoopen(1)
 " open tagbar on supported file types for new editors within vim
 autocmd FileType * nested :call tagbar#autoopen(0)
 " open tagbar with new tab for supported file type, might be disabled because over aggressive? I forgot
-autocmd BufEnter * nested :call tagbar#autoopen(0)
+" autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+" ----- golpls integration with go-vim -----
+"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+let g:ctrlp_max_files = 40000 " default only 10000 though this takes a while to process
 
 set printoptions=paper:letter,duplex:off " Setup print options for hardcopy command.
 set showcmd " some extra info about the currnt command at the last line of screen
@@ -85,19 +97,12 @@ set showcmd " some extra info about the currnt command at the last line of scree
 " always show the powerline, and use unicode symbols
 set laststatus=2
 
-" tagbar configuration if you install it
-" ---------------------------------------
-" one mouse click navigates
-let g:tagbar_singleclick = 1
-
-
-
 " ----- NERDTREE ---------
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 silent! map <F2> :NERDTreeFind<CR>
 let g:NERDTreeMapActivateNode="<F2>"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.class$', '\~$']
 " need this off to use netrw which is the only way to get VCSCommand to work across directories
@@ -151,14 +156,15 @@ if dein#load_state('~/.cache/dein')
     call dein#add('copy/deoplete-ocaml')
     " golang plugin for deoplete
 
-    call dein#add('fatih/vim-go')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('preservim/tagbar')
+    call dein#add('fatih/vim-go')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('scrooloose/nerdtree')
     call dein#add('iCyMind/NeoSolarized')
+    call dein#add('tpope/vim-fugitive')
 
     " ale is code linter and fixer
     " for python support: pip3 install --user autopep8 pylint yapf
@@ -181,8 +187,6 @@ endif
 if dein#check_install()
     call dein#install()
 endif
-
-call deoplete#custom#option('deoplete-source-attribute-min_pattern_length', 0)
 
 "End dein Scripts-------------------------
 "
@@ -207,9 +211,12 @@ set background=dark " solarized dark background
 let g:deoplete#enable_at_startup = 1
 
 let g:ale_fix_on_save = 1
-let g:airline#extensions#ale#enabled = 1
-
 let g:ale_linters = {'go': ['gopls'],}
+
+" vim-airline
+let g:airline#extensions#ale#enabled = 1
+" drops the branch from the status line, as it blocks everything else
+let g:airline_section_b = airline#section#create_left(['hunks'])
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
@@ -246,12 +253,12 @@ let g:go_fmt_command = "goimports"
 
 " show docs for type with "K" for example
 
-" automiatically show type in the little window on the bottom
-let g:go_auto_type_info = 1
+" automatically show type in the little window on the bottom
+let g:go_auto_type_info = 0
 " doesn't seem to work in neovim . . .
 let g:go_doc_popup_window = 0
 " highlights usage of identifier under cursor
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0
 
 " instead of filling the default register (clipboard), send to black hole register
 " use x to cut
