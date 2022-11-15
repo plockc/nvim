@@ -16,7 +16,7 @@ nnoremap ; :
 let mapleader=","
 "
 " set complete=t " only complete tags instead of buffer, and stuff, makes ctrl-p/n usable
-set complete=.,i,t      " scan current file, included files (super classes and interfaces), and then ctags
+set complete=t,.,i      " scan current file, included files (super classes and interfaces), and then ctags
 set pumheight=7
 set completeopt=longest,menuone,preview " show only matches so far, and show menu even if only one choice
 
@@ -72,11 +72,11 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_singleclick = 1
 let g:ctrlp_max_files = 40000 " default only 10000 though this takes a while to process
 " open tabgar if file type supports it
-"autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 " open tagbar on supported file types for new editors within vim
-"autocmd FileType * nested :call tagbar#autoopen(0)
+autocmd FileType * nested :call tagbar#autoopen(0)
 " open tagbar with new tab for supported file type, might be disabled because over aggressive? I forgot
-" :autocmd BufEnter * nested :call tagbar#autoopen(0)
+autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 set printoptions=paper:letter,duplex:off " Setup print options for hardcopy command.
 set showcmd " some extra info about the currnt command at the last line of screen
@@ -201,8 +201,8 @@ syntax enable
 set number
 
 set background=dark " solarized dark background
-colorscheme NeoSolarized " solarized color scheme
-set termguicolors
+" colorscheme NeoSolarized " solarized color scheme
+" set termguicolors
 
 let g:deoplete#enable_at_startup = 1
 
@@ -216,7 +216,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-let g:python3_host_prog = 'python3'
+" let g:python3_host_prog = 'python3'
 
 "python with virtualenv support
 py3 << EOF
