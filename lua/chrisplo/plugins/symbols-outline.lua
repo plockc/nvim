@@ -4,4 +4,9 @@ if not setup then
 	return
 end
 
-symbols.setup({})
+symbols.setup({
+	keymaps = {
+		-- doubleclick and Enter to navigate
+		goto_location = { "<2-LeftMouse>", "<Cr>" },
+	},
+})
