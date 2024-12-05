@@ -45,6 +45,9 @@ lspconfig["gopls"].setup({
 		unusedvariable = true,
 		unusedparams = true,
 	},
+	settings = { gopls = {
+		env = { GOFLAGS = "-tags=test" },
+	} },
 })
 
 -- configure html server

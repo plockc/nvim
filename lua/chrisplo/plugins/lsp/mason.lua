@@ -49,8 +49,7 @@ mason_null_ls.setup({
 		"eslint_d", -- ts/js linter
 		"golangci-lint", -- golang linter
 		"gospell", -- spelling in strings
-		"gofumpt", --golang formatter
-		"goimports", -- go imports formatter
+		"goimports", -- go imports formatter, gofumpt does it instead
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,
