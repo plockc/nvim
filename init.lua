@@ -1,18 +1,7 @@
--- https://github.com/josean-dev/dev-environment-files/tree/b9d2822e0676633fe7f29b996937cb1ef7fbf11e/.config/nvim
--- https://www.youtube.com/watch?v=vdn_pKJUda8
+-- https://github.com/josean-dev/dev-environment-files/tree/cb670e8890ca9d8baf978b38ed75987b742032e6/.config/nvim
+-- https://www.youtube.com/watch?v=6pAG3BHurdM
 require("chrisplo.core.options")
 require("chrisplo.core.keymaps")
 require("chrisplo.core.options")
-require("chrisplo.core.colorscheme")
 require("chrisplo.plugins-setup")
-require("chrisplo.plugins.nvim-tree")
-require("chrisplo.plugins.lualine")
-require("chrisplo.plugins.telescope")
-require("chrisplo.plugins.nvim-cmp")
-require("chrisplo.plugins.lsp.mason")
-require("chrisplo.plugins.lsp.lspsaga")
-require("chrisplo.plugins.lsp.lspconfig")
-require("chrisplo.plugins.lsp.null-ls")
-require("chrisplo.plugins.treesitter")
-require("chrisplo.plugins.gitsigns")
-require("chrisplo.plugins.symbols-outline")
+--require("chrisplo.plugins.symbols-outline")

@@ -1,0 +1,18 @@
+-- only works with languages that have an LSP server
+-- will reformat async normally
+-- see conform instead
+return {}
+-- return {
+--   {
+--     "lukas-reineke/lsp-format.nvim",
+--     opts = {},
+--     config = function()
+--       -- chatch exiting functions which would not do the async formatting
+--       vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+--       vim.cmd [[cabbrev wqa execute "Format sync" <bar> wqa]]
+--       vim.cmd [[cabbrev x execute "Format sync" <bar> x]]
+--       vim.cmd [[cabbrev ZZ execute "Format sync" <bar> ZZ]]
+--       require("lsp-format").setup({})
+--     end
+--   }
+-- }
