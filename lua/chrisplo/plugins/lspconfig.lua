@@ -1,43 +1,62 @@
-local lsp_on_attach = function(client, bufnr)
-	require("lsp-format").on_attach(client, bufnr)
-end
-
 return {
   {
   	"neovim/nvim-lspconfig",
+  	event = { "BufReadPre", "BufNewFile"},
   	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
-        "lukas-reineke/lsp-format.nvim",
-		-- also in nvim-cmp.lua as a source, used here for enhanced capabilities to send to the completion
 		"hrsh7th/cmp-nvim-lsp", -- source for lsp based completion
+		-- rename imports on file renames, etc.
+		{ "antosha417/nvim-lsp-file-operations", config = true},
+		-- lua for neovim improvments
+		{ "folke/neodev.nvim", opts = {} },
+		"williamboman/mason-lspconfig.nvim",
+		-- also in nvim-cmp.lua as a source, used here for enhanced capabilities to send to the completion
 	},
-    lazy = false,
-    opts = {},
     config = function()
+    	-- every lsp config will get these capabilities, which are advanced
+    	-- from the default
 		local capabilities = require('cmp_nvim_lsp').default_capabilities()
-		-- setup language servers
-        require'lspconfig'.gopls.setup({
-			capabilities = capabilities,
-        	on_attach = lsp_on_attach,
-        	analyses = {
-        		unusedvariable = true,
-        		unusedparams = true,
-        	},
-			init_options = {
-        	  usePlaceholders = true,
-        	},
-			-- cmd = {'gopls'},
-        	settings = { gopls = {
-				experimentalPostfixCompletions = true,
-            	analyses = {
-            	  unusedparams = true,
-            	  shadow = true,
-            	},
-            	staticcheck = true,
-        		env = { GOFLAGS = "-tags=test" },
-        	} },
-        })
-    end,
+		local lspconfig = require("lspconfig")
+		local mason_lspconfig = require("mason-lspconfig")
+		local lsp_on_attach_lsp_format = function(client, bufnr)
+			require("lsp-format").on_attach(client, bufnr)
+		end
+
+		mason_lspconfig.setup_handlers({
+			-- this default handler will be called for each server
+			-- that doesn't hav e a specific handler,
+			-- enables advanced capabilities
+			function(server_name)
+				lspconfig[server_name].setup({
+					capabilities = capabilities,
+				})
+			end,
+			-- gopls lspconfig handler for setup
+			["gopls"] = function()
+				lspconfig["gopls"].setup({
+					capabilities = capabilities,
+					-- will eventually setup formatting
+					-- on_attach = lsp_on_attach_lsp_format,
+					analyses = {
+						unusedvariable = true,
+						unusedparams = true,
+					},
+					init_options = {
+					  usePlaceholders = true,
+					},
+					-- cmd = {'gopls'},
+					settings = { gopls = {
+						experimentalPostfixCompletions = true,
+						analyses = {
+						  unusedparams = true,
+						  shadow = true,
+						},
+						staticcheck = true,
+						env = { GOFLAGS = "-tags=test" },
+					} },
+				})
+			end -- gopls function
+		})
+    end, -- config function
   },
 }
 
