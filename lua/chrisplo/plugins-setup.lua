@@ -31,25 +31,3 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
--- return packer.startup(function(use)
--- 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
--- 
--- 	-- enhanced lsp uis
--- 	use({
--- 		"glepnir/lspsaga.nvim",
--- 		branch = "main",
--- 		requires = {
--- 			{ "nvim-tree/nvim-web-devicons" },
--- 		},
--- 	})
--- 
--- 	-- formatting & linting
--- 	-- null-ls deprecated, none-ls is the takeover project
--- 	use("nvimtools/none-ls.nvim") -- configure formatters & linters
--- 	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
--- 
--- 	-- lsp based navigator, like tagbar was for ctags
--- 	use("simrat39/symbols-outline.nvim")
--- 
--- end)

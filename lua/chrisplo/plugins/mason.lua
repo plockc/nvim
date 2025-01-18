@@ -34,6 +34,7 @@ return {
   		  	  "golangci-lint",
   		  	  "goimports",
   		  	  "gofumpt",
+  		  	  		"stylua",
   		  },
       })
     end
