@@ -28,7 +28,9 @@ surround - add/remove surrounding characters (like ')', '"', ']')
 
 K - show docs
 gd - goto definition
-gt - goto type def
+gt - telescope type definitions
+gi - telescope implementations
+gR - telecope references
 <leader>rn - rename
 ] and [ d - next / previous diagnostic
 
