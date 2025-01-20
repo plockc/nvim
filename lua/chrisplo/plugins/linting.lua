@@ -1,5 +1,6 @@
 return {
-	"mfussenegger/nvim-lint",
+	"plockc/nvim-lint",
+	branch = "all_fixes",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require("lint")
@@ -16,6 +17,7 @@ return {
 		local lint_go = require("lint").linters.golangcilint
 		lint_go.args = {
 			"run",
+			"--issues-exit-code=0",
 			"--enable",
 			"predeclared,usestdlibvars,misspell,gocyclo,goconst,gocognit,dupl,copyloopvar",
 			"--build-tags",
