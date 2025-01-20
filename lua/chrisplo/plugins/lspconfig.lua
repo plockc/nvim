@@ -87,7 +87,7 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-				-- gopls lspconfig handler for setup
+				-- gopls lspconfig handler for setup for gopls will get reference to the lspconfig for gopls then set it up
 				["gopls"] = function()
 					lspconfig["gopls"].setup({
 						capabilities = capabilities,
@@ -96,9 +96,18 @@ return {
 						-- cmd = {
 						-- 	"gopls",
 						-- },
-						-- settings = {
-						-- 	gopls = {},
-						-- },
+						settings = {
+							-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+							gopls = {
+								-- buildFlags of "-tags=testing" not helping lint check, use env instead
+								env = { GOFLAGS = "-tags=testing,dynamic" },
+								-- gopls hosts analyzers https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md, can turn them off (though haven't seen proof they work, even with init_options.lint=true!)
+								staticcheck = true,
+								-- analyses = {
+								-- 	assign = true,
+								-- },
+							},
+						},
 					})
 				end, -- gopls function
 			})
